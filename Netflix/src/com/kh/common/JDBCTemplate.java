@@ -38,9 +38,9 @@ public class JDBCTemplate {
 		
 		try {
 			conn = DriverManager.getConnection(
-					prop.getProperty("URL"),
-					prop.getProperty("USER"),
-					prop.getProperty("PASSWORD")
+					prop.getProperty("url"),
+					prop.getProperty("user"),
+					prop.getProperty("password")
 					);
 			
 			conn.setAutoCommit(false);
@@ -126,4 +126,4 @@ public class JDBCTemplate {
     }
 }
 
-}
+

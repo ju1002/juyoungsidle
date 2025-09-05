@@ -1,10 +1,12 @@
 package com.kh.run;
 
+import com.kh.view.BoardView;
+
 public class Run {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		BoardView bv =new BoardView();
+		bv.mainMenu();
 	}
 
 }

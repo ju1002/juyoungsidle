@@ -2,4 +2,16 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 <comment>SQL Statements for Employee Project</comment>
+
+<entry key = "findAll">
+SELECT
+       CONTENTS_NUM
+     , TITLE
+     , GANRE
+     , DIRECTOR
+     , LEVEL_NUM
+  FROM 
+       TB_CONTENTS
+       
+</entry>
 </properties>

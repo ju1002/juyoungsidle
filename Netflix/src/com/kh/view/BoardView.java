@@ -1,11 +1,16 @@
 package com.kh.view;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import com.kh.controller.BoardController;
+import com.kh.model.vo.Board;
 
 public class BoardView {
 	
 	private Scanner sc = new Scanner(System.in);
-	
+	private BoardController bc = new BoardController();
 	public void mainMenu() {
 		
         while (true) {
@@ -27,7 +32,7 @@ public class BoardView {
             String menuNo = sc.nextLine();
 
             switch (menuNo) {
-                case "1": break;
+                case "1": findAll();break;
                 case "2": break;
                 case "3": break;
                 case "4": break;
@@ -40,6 +45,21 @@ public class BoardView {
             }
         }
     }
+	public List<Board> findAll() {
+		System.out.println("모든 콘텐츠 조회 메뉴>>");
+		List<Board> boards =  bc.findAll();
+		
+		for(Board board : boards) {
+			System.out.println("제목 :"+board.getTitle());
+			
+			
+		}
+		
+		
+		
+		return boards;
+		
+	}
 	
 	
 }
