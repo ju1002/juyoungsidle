@@ -1,4 +1,4 @@
-package fdfdasfsadfadsf;
+package board;
 
 public class fsadfasfdsfdsf {
 
