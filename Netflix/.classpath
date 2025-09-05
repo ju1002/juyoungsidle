@@ -6,7 +6,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/dev/ojdbc11-23.2.0.0.jar">
+=======
+	<classpathentry kind="lib" path="C:/s2selyn/dev/ojdbc11-23.2.0.0.jar">
+>>>>>>> f012026990700f1539047626861597ff7700bee4
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

@@ -9,10 +9,7 @@ import java.sql.Statement;
 import java.util.Properties;
 
 /**
- * 
- */
-/**
- * 
+ * JDBC 과정 중 반복적으로 사용되는 구문들을 모아놓은 유틸리티 클래스
  */
 public class JDBCTemplate {
 	
@@ -125,5 +122,8 @@ public class JDBCTemplate {
         }
     }
 }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> f012026990700f1539047626861597ff7700bee4
