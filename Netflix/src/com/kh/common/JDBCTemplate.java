@@ -120,10 +120,5 @@ public class JDBCTemplate {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-}
-<<<<<<< HEAD
-
-
-=======
->>>>>>> f012026990700f1539047626861597ff7700bee4
+    
+    }}}

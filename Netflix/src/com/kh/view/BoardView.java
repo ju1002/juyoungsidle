@@ -33,7 +33,7 @@ public class BoardView {
 
             switch (menuNo) {
                 case "1": findAll();break;
-                case "2": break;
+                case "2": select();break;
                 case "3": saveUser(); break;
                 case "4": break;
                 case "5": break;
@@ -47,10 +47,12 @@ public class BoardView {
     }
 	public List<Board> findAll() {
 		System.out.println("모든 콘텐츠 조회 메뉴>>");
+		
 		List<Board> boards =  bc.findAll();
 		
 		for(Board board : boards) {
-			System.out.println("제목 :"+board.getTitle());
+			System.out.println("고유 번호 :" +board.get());
+			System.out.println("")
 			
 			
 		}
