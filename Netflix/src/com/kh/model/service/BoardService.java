@@ -9,6 +9,7 @@ import java.util.List;
 import com.kh.common.JDBCTemplate;
 import com.kh.model.dao.BoardDAO;
 import com.kh.model.vo.Board;
+import com.kh.model.vo.User;
 
 public class BoardService {
 	
@@ -31,9 +32,9 @@ public class BoardService {
 	 * @param userPwd
 	 * @return 
 	 */
-    public Board login(String userId, String userPwd) {
+    public User login(String userId, String userPwd) {
         Connection conn = getConnection();
-        Board user = boardDAO.login(conn, userId, userPwd);
+        User user = boardDAO.login(conn, userId, userPwd);
         JDBCTemplate.close(conn);
         return user;
     }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.kh.model.service.BoardService;
 import com.kh.model.vo.Board;
+import com.kh.model.vo.User;
 
 public class BoardController {
 	
@@ -26,7 +27,7 @@ public class BoardController {
 	 * @param userPwd 
 	 * @param userId 
 	 */
-    public Board login(String userId, String userPwd) {
+    public User login(String userId, String userPwd) {
         return boardService.login(userId, userPwd);
         
     }

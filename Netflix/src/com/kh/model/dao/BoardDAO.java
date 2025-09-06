@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import com.kh.common.JDBCTemplate;
 import com.kh.model.vo.Board;
+import com.kh.model.vo.User;
 
 
 
@@ -70,7 +71,7 @@ public class BoardDAO {
 	 * @param userPwd
 	 * @return
 	 */
-	public Board login(Connection conn, String userId, String userPwd) {
+	public User login(Connection conn, String userId, String userPwd) {
 		
 		Board user = null;
 		
