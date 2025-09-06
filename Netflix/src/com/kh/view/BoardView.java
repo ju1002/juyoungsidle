@@ -6,14 +6,32 @@ import java.util.Scanner;
 
 import com.kh.controller.BoardController;
 import com.kh.model.vo.Board;
+import com.kh.model.vo.User;
 
+/**
+ * 
+ */
 public class BoardView {
 	
 	private Scanner sc = new Scanner(System.in);
 	private BoardController bc = new BoardController();
+	 private static User loginUser = null;
+	
+	
+	
+	/**
+	 * 
+	 */
 	public void mainMenu() {
 		
+		
         while (true) {
+        	
+        	if(loginUser != null) {
+        		
+        		System.out.println(loginUser.getNickname() + "님 환영합니다.");
+        		
+        	}
             System.out.println("""
                     
                     ========= 넷플릭스 실행 프로그램 =======
@@ -37,7 +55,7 @@ public class BoardView {
                 case "3": saveUser(); break;
                 case "4": break;
                 case "5": break;
-                case "6": break;
+                case "6": writeReivew(); break;
                 case "7": break;
                 case "8": break;
                 case "0": System.out.println("프로그램을 종료합니다."); return;
@@ -45,6 +63,12 @@ public class BoardView {
             }
         }
     }
+	
+	
+
+	/**
+	 * @return
+	 */
 	public List<Board> findAll() {
 		System.out.println("모든 콘텐츠 조회 메뉴>>");
 		
@@ -52,18 +76,23 @@ public class BoardView {
 		
 		for(Board board : boards) {
 			System.out.println("고유 번호 :" +board.get());
-			System.out.println("")
-			
-			
+			System.out.println("");
 		}
-		
 		
 		
 		return boards;
 		
 	}
 	
+	
+	
+	
+	
+	
 	// 3. 회원가입
+	/**
+	 * 
+	 */
 	private void saveUser() {
 		
 		System.out.println("======== 회원가입 ========");
@@ -128,5 +157,41 @@ public class BoardView {
 		// 컨트롤러에 아이디, 비밀번호, 새비번 전달하면서 메소드 호출 --> 컨트롤러 클래스 생성 후 작업
 		
 	}
+	
+	
+	//6. 리뷰 작성하기
+	/**
+	 * 
+	 */
+	private void writeReivew() {
+		
+		if()
+		checkLogin();
+		
+	}
+	
+	//7. 공통 로그인 
+	private void login() {
+		
+		System.out.println(" 로그인을 먼저 하세요");
+		
+		System.out.print("아이디를 입력해주세요 > ");
+		String userId = sc.nextLine();
+		
+		System.out.print("비밀번호를 입력해주세요 > ");
+		String userPwd = sc.nextLine();
+		
+		User user = bc.login(userId,userPwd);
+		
+        if (user != null) {
+            loginUser = user;
+            System.out.println("\n" + loginUser.getNickname() + "님, 로그인에 성공했습니다.");
+        } else {
+            System.out.println("\n아이디 또는 비밀번호가 일치하지 않습니다.");
+        }
+			
+		}
+	}
+
 	
 }

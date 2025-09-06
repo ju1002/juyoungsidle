@@ -11,6 +11,13 @@ import com.kh.model.dao.BoardDAO;
 import com.kh.model.vo.Board;
 
 public class BoardService {
+	
+	private BoardDAO boardDAO = new BoardDAO();	
+	
+	
+	/**
+	 * @return
+	 */
 	public List<Board> findAll() {
 	getConnection();
 	Connection conn =getConnection(); //커넥션
@@ -18,5 +25,17 @@ public class BoardService {
 	JDBCTemplate.close(conn);
 	return boards;
 	}
+
+	/**
+	 * @param userId
+	 * @param userPwd
+	 * @return 
+	 */
+    public Board login(String userId, String userPwd) {
+        Connection conn = getConnection();
+        Board user = boardDAO.login(conn, userId, userPwd);
+        JDBCTemplate.close(conn);
+        return user;
+    }
 
 }

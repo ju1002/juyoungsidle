@@ -15,30 +15,28 @@ import java.util.Properties;
 import com.kh.common.JDBCTemplate;
 import com.kh.model.vo.Board;
 
-/**컨텐츠 전체 조회를 하는 곳
- * 
- * 
- */
+
+
+
 public class BoardDAO {
+	
 	private static Properties prop = new Properties();
 	
-	static {
-		try {
-			prop.loadFromXML(new FileInputStream("resources/queries.xml"));
-		} catch (InvalidPropertiesFormatException e) {
-
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			
-			System.out.println("파일이 없습니다");
-
-			e.printStackTrace();
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
-	}
 	
+	
+    public BoardDAO() { // 생성자로 변경하여 객체 생성 시 로드하도록 함
+        try {
+            prop.loadFromXML(new FileInputStream("resources/queries.xml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+	
+	
+	/**
+	 * @param conn
+	 * @return
+	 */
 	public List<Board> findAll(Connection conn) {
 		ResultSet rset = null;
 		PreparedStatement pstmt = null;
@@ -63,9 +61,52 @@ public class BoardDAO {
 			JDBCTemplate.close(pstmt);
 		}
 		return boards;
-	    
+		
+	}
+	
+	/**
+	 * @param conn
+	 * @param userId
+	 * @param userPwd
+	 * @return
+	 */
+	public Board login(Connection conn, String userId, String userPwd) {
+		
+		Board user = null;
+		
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("loginUser");
+		
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userId);
+            pstmt.setString(2, userPwd);
+            rset = pstmt.executeQuery();
+
+            if (rset.next()) {
+                user = new Board(
+                    rset.getInt("USER_NO"),
+                    rset.getString("USER_ID"),
+                    rset.getString("USER_PWD"),
+                    rset.getString("NICKNAME"),
+                    rset.getString("SUBSCRIPTION")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+        	JDBCTemplate.close(rset);
+        	JDBCTemplate.close(pstmt);
+        }
+        return user;
+		
 		
 		
 	}
+	
+	
+	
+	
 
 }
