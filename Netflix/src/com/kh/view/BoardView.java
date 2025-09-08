@@ -51,7 +51,7 @@ public class BoardView {
 
             switch (menuNo) {
                 case "1": findAll();break;
-                case "2": select();break;
+                case "2": break;
                 case "3": saveUser(); break;
                 case "4": break;
                 case "5": break;
@@ -77,8 +77,15 @@ public class BoardView {
 		List<Board> boards =  bc.findAll();
 		
 		for(Board board : boards) {
+<<<<<<< HEAD
 			System.out.println("고유 번호 :" +board.get());
 			System.out.println("");
+=======
+			System.out.println("고유 번호 :" +board.getTitle());
+			
+			
+			
+>>>>>>> fcb5444 (db)
 		}
 		
 		

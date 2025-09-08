@@ -22,6 +22,7 @@ public class BoardController {
 		
 	}
 	
+<<<<<<< HEAD
 	public int writeReivew(String userId, String title, String text, int rating) {
 		return boardService.writeReivew(userId, title, text, rating);
 		
@@ -47,5 +48,8 @@ public class BoardController {
 		
 	}
 
+=======
+	
+>>>>>>> fcb5444 (db)
 
 }
