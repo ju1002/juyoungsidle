@@ -10,6 +10,7 @@ public class Board {
 	private String title;
 	private String text;
 	private int rating;
+	private Date date;
 	
 	// == 
 	
@@ -20,23 +21,22 @@ public class Board {
 	
 	//== 리뷰정보 제공용 생성자 ==
 	
-	public Board(int reviewNo, String userId, String title, String text, int rating) {
+
+
+
+	public int getReviewNo() {
+		return reviewNo;
+	}
+	public Board(int reviewNo, String userId, String title, String text, int rating, Date date) {
 		super();
 		this.reviewNo = reviewNo;
 		this.userId = userId;
 		this.title = title;
 		this.text = text;
 		this.rating = rating;
-	}
-	
-	// 사용자 생성자
-	public Board(int int1, String string, String string2, String string3, String string4) {
-		// TODO Auto-generated constructor stub
+		this.date = date;
 	}
 
-	public int getReviewNo() {
-		return reviewNo;
-	}
 	public String getUserId() {
 		return userId;
 	}

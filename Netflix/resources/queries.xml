@@ -14,4 +14,29 @@ SELECT
        TB_CONTENTS
        
 </entry>
+
+<entry key = loginUser>
+SELECT * FROM TB_USER
+WHERE USER_ID = ? AND USER_PWD = ?
+       
+</entry>
+
+<entry key = writeReivew>
+INSERT INTO TB_REIVEWS
+VALUES (TB_REVIEWS_REVIEW_NO_SEQ.NEXTVAL, ?, ?, ?, ?)
+       
+</entry>
+
+<entry key = findAllReviews>
+SECLET * FROM TB_RREIVEW
+       
+</entry>
+
+<entry key = updateReview>
+INSERT INTO TB_REIVEW
+VALUES (TB_REVIEWS_REVIEW_NO_SEQ.NEXTVAL, ?, ?, ?, ?)
+       
+</entry>
+
+
 </properties>

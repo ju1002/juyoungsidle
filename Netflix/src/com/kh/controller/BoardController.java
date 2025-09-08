@@ -21,6 +21,12 @@ public class BoardController {
 		return boards;
 		
 	}
+	
+	public int writeReivew(String userId, String title, String text, int rating) {
+		return boardService.writeReivew(userId, title, text, rating);
+		
+	}
+
 
 	/**
 	 * 로그인 체크 메소드
@@ -31,5 +37,15 @@ public class BoardController {
         return boardService.login(userId, userPwd);
         
     }
+
+	/**
+	 * @param userId
+	 * @return 
+	 */
+	public List<Board> checkReivew(String userId) {
+		return boardService.checkReview(userId);
+		
+	}
+
 
 }

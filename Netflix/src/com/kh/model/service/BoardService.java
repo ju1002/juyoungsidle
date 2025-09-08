@@ -39,4 +39,30 @@ public class BoardService {
         return user;
     }
 
+	/**
+	 * @param userId
+	 * @param rating 
+	 * @param text 
+	 * @param title 
+	 * @return 
+	 */
+	public int writeReivew(String userId, String title, String text, int rating) {
+		Connection conn = getConnection();
+		int rs = boardDAO.writeRieview(conn,userId,title , text, rating);
+		JDBCTemplate.close(conn);
+		
+		return rs;
+		
+		
+	}
+
+	public List<Board> checkReview(String userId) {
+		Connection conn = getConnection();
+		List<Board> boards = boardDAO.checkReivew(conn, userId);
+		JDBCTemplate.close(conn);
+		
+		return boards;
+		
+	}
+
 }

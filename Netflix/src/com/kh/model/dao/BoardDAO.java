@@ -65,6 +65,32 @@ public class BoardDAO {
 		
 	}
 	
+	
+	public int writeRieview(Connection conn, String userId, String title, String text, int rating) {
+		
+		int rs = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("writeReivew");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userId);
+            pstmt.setString(2, title);
+            pstmt.setString(3, text);
+            pstmt.setInt(4, rating);
+            rs = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+	
+			e.printStackTrace();
+		} finally{
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return rs;
+		
+	}
+	
 	/**
 	 * @param conn
 	 * @param userId
@@ -73,7 +99,7 @@ public class BoardDAO {
 	 */
 	public User login(Connection conn, String userId, String userPwd) {
 		
-		Board user = null;
+		User user = null;
 		
 		ResultSet rset = null;
 		PreparedStatement pstmt = null;
@@ -86,7 +112,7 @@ public class BoardDAO {
             rset = pstmt.executeQuery();
 
             if (rset.next()) {
-                user = new Board(
+                user = new User(
                     rset.getInt("USER_NO"),
                     rset.getString("USER_ID"),
                     rset.getString("USER_PWD"),
@@ -103,6 +129,37 @@ public class BoardDAO {
         return user;
 		
 		
+		
+	}
+
+
+	public List<Board> checkReivew(Connection conn, String userId) {
+		List<Board> boards  = new ArrayList(); 
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("checkReivew");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			
+			if(rset.next()) {
+				
+				Board board = new Board(rset.getInt("REVIEW_NO"),
+                        rset.getString("USER_ID"),
+                        rset.getString("TITLE"),
+                        rset.getString("REVIEW_TEXT"), 
+                        rset.getInt("RATING"),       
+                        rset.getDate("CREATED_AT"));
+				
+				boards.add(board);
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return boards;
 		
 	}
 	

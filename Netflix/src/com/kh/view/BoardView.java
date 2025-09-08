@@ -29,7 +29,7 @@ public class BoardView {
         	
         	if(loginUser != null) {
         		
-        		System.out.println(loginUser.getNickname() + "님 환영합니다.");
+        		System.out.println(loginUser.getUserNickname() + "님 환영합니다.");
         		
         	}
             System.out.println("""
@@ -56,7 +56,7 @@ public class BoardView {
                 case "4": break;
                 case "5": break;
                 case "6": writeReivew(); break;
-                case "7": break;
+                case "7": updateReivew(); break;
                 case "8": break;
                 case "0": System.out.println("프로그램을 종료합니다."); return;
                 default: System.out.println("잘못된 번호입니다. 다시 입력해주세요."); break;
@@ -65,6 +65,8 @@ public class BoardView {
     }
 	
 	
+
+
 
 	/**
 	 * @return
@@ -86,8 +88,7 @@ public class BoardView {
 	
 	
 	
-	
-	
+
 	
 	// 3. 회원가입
 	/**
@@ -165,12 +166,86 @@ public class BoardView {
 	 */
 	private void writeReivew() {
 		
-		if()
-		checkLogin();
+		if(loginUser == null) {
+			System.out.println("로그인 후 사용가능합니다.");
+			login();
+		}
+
+		String userId = loginUser.getUserId();
+		System.out.print("작성할 콘텐츠 제목을 선택해주세요 > ");
+		String title = sc.nextLine();
+		
+		System.out.println("리뷰내용 작성하기");
+		String text = sc.nextLine();
+		
+		System.out.print("평점 주기 1~5 사이 선택 >");
+		int rating = sc.nextInt();
+		sc.nextLine();
+		
+		int rs = bc.writeReivew(userId,title,text,rating);
+		
+		if (rs != 0) {
+			System.out.println("리뷰가 작성되었습니다.");
+			System.out.println("\n작성된 리뷰 : " + text + "\n평점 : " + rating);
+		} else {
+			System.err.println("리뷰작성에 실패하였습니다.");
+		}
+			
+	}
+	
+	//7. 리뷰업데이트 하기 
+	/**
+	 * 
+	 */
+	private void updateReivew() {
+		List<Board> boards = checkReivew();
+		
+		if(boards.isEmpty()) {
+			System.out.println("리뷰 작성을 먼저하세요");
+			 writeReivew();
+		}
+		
+		System.out.println("작성할 리뷰를 선택하세요");
+		int reviewNo = sc.nextInt();
+		//
+		//
+		//
+		//
+		
+		
+		
 		
 	}
 	
-	//7. 공통 로그인 
+	private List<Board> checkReivew() {
+		if (loginUser == null ){
+			System.out.println("로그인 후 사용가능합니다.");
+			login();
+		}
+		
+		String userId = loginUser.getUserId();
+		List<Board> boards = bc.checkReivew(userId);
+		
+		if(boards.isEmpty()) {
+			System.out.println("저장된 리뷰가 없습니다.");
+			return null;
+			
+		}else {
+			for(Board board : boards) {
+				System.out.println(board.getTitle() + "\n" + board.getText());
+			}
+			
+		}
+		return boards;
+		
+		
+	}
+
+
+
+
+
+	//9. 공통 로그인 
 	private void login() {
 		
 		System.out.println(" 로그인을 먼저 하세요");
@@ -185,13 +260,14 @@ public class BoardView {
 		
         if (user != null) {
             loginUser = user;
-            System.out.println("\n" + loginUser.getNickname() + "님, 로그인에 성공했습니다.");
+            System.out.println("\n" + loginUser.getUserNickname() + "님, 로그인에 성공했습니다.");
         } else {
             System.out.println("\n아이디 또는 비밀번호가 일치하지 않습니다.");
         }
 			
-		}
 	}
+	
+	//10. 공통 출력 메소드
 
 	
 }
